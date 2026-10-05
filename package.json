@@ -1,0 +1,68 @@
+{
+  "name": "raja-enterprise",
+  "version": "1.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "desktop": "npm run build -- --base-href ./ && electron .",
+    "package:windows": "npm run build -- --base-href ./ && electron-builder --win nsis",
+    "mobile:sync": "npm run build -- --base-href ./ && cap sync",
+    "mobile:android": "npm run mobile:sync && cap open android",
+    "mobile:ios": "npm run mobile:sync && cap open ios",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "main": "electron/main.cjs",
+  "private": true,
+  "packageManager": "npm@12.1.0",
+  "build": {
+    "appId": "com.rajarathinam.enterprises.billing",
+    "productName": "Rajarathinam Enterprises Billing",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "dist/rajaEnterprise/browser/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "Rajarathinam-Enterprises-Billing-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "@angular/common": "^22.2.0",
+    "@angular/compiler": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/platform-browser": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
+    "@capacitor/ios": "^8.5.2",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.2.0",
+    "@angular/cli": "^22.2.0",
+    "@angular/compiler-cli": "^22.2.0",
+    "@capacitor/cli": "^8.5.2",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "jsdom": "^30.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.2",
+    "vitest": "^5.0.0"
+  },
+  "allowScripts": {
+    "electron@44.5.1": true
+  }
+}
